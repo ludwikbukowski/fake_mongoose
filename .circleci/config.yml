@@ -236,12 +236,12 @@ workflows:
           name: otp_22_small_tests
           otp: 1:22.0.4-1
 #          context: mongooseim-org
-      - mim/dialyzer:
-          name: dialyzer
-          otp: 1:22.0.4-1
-#          context: mongooseim-org
-          requires:
-            - otp_22_small_tests
+#      - mim/dialyzer:
+#          name: dialyzer
+#          otp: 1:22.0.4-1
+##          context: mongooseim-org
+#          requires:
+#            - otp_22_small_tests
 #      - mim/big_tests:
 #          name: mysql_redis
 #          otp: 1:21.3.8.4-1
@@ -250,14 +250,14 @@ workflows:
 #          context: mongooseim-org
 #          requires:
 #            - otp_21_3_small_tests
-#      - mim/big_tests:
-#          name: mssql_mnesia
-#          otp: 1:22.0.4-1
-#          preset: odbc_mssql_mnesia
-#          db: mssql
-#          context: mongooseim-org
-#          requires:
-#            - otp_22_small_tests
+      - mim/big_tests:
+          name: mssql_mnesia
+          otp: 1:22.0.4-1
+          preset: odbc_mssql_mnesia
+          db: mssql
+          context: mongooseim-org
+          requires:
+            - otp_22_small_tests
 #      - mim/big_tests:
 #          name: ldap_mnesia
 #          otp: 1:22.0.4-1
