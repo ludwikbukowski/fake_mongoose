@@ -188,8 +188,8 @@ orbs:
               name: Run Big Tests
               command: |
                 KEEP_COVER_RUNNING=1 ./tools/travis-test.sh -p $PRESET -s false
-           - store_test_results:
-               path: big_tests
+          - store_test_results:
+              path: big_tests
           - run:
               name: Coverage
               when: on_success
@@ -214,6 +214,7 @@ orbs:
               command: |
                   tools/circleci-prepare-log-dir.sh
                   if [ -n "${AWS_SECRET_ACCESS_KEY}" ]; then tools/circleci-upload-to-s3.sh; fi
+
 
 workflows:
   version: 2
