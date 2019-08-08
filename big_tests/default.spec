@@ -25,7 +25,7 @@
             ct_markdown_errors_hook,
             {ct_mongoose_log_hook, [ejabberd_node, ejabberd_cookie]},
             {ct_mongoose_log_hook, [ejabberd2_node, ejabberd_cookie]},
-            {cth_surefire, [logdir, "ct_results_formated"]}
+            {cth_surefire, [logdir, "ct_results"]}
            ]}.
 
 %% To enable printing group and case enters on server side
