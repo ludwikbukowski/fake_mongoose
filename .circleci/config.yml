@@ -189,7 +189,7 @@ orbs:
               command: |
                 KEEP_COVER_RUNNING=1 ./tools/travis-test.sh -p $PRESET -s false
           - store_test_results:
-              path: big_tests
+              path: big_tests/ct_results
           - run:
               name: Coverage
               when: on_success
