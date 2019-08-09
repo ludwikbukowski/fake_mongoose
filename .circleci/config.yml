@@ -220,36 +220,36 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-#      - mim/package:
-#          name: centos7
-#          platform: centos7
+      - mim/package:
+          name: centos7
+          platform: centos7
 #          context: mongooseim-org
-#      - mim/package:
-#          name: debian_stretch
-#          platform: debian_stretch
+      - mim/package:
+          name: debian_stretch
+          platform: debian_stretch
 #          context: mongooseim-org
-#      - mim/build_and_small_tests:
-#          name: otp_21_3_small_tests
-#          otp: 1:21.3.8.4-1
+      - mim/build_and_small_tests:
+          name: otp_21_3_small_tests
+          otp: 1:21.3.8.4-1
 #          context: mongooseim-org
       - mim/build_and_small_tests:
           name: otp_22_small_tests
           otp: 1:22.0.4-1
 #          context: mongooseim-org
-#      - mim/dialyzer:
-#          name: dialyzer
-#          otp: 1:22.0.4-1
-##          context: mongooseim-org
-#          requires:
-#            - otp_22_small_tests
-#      - mim/big_tests:
-#          name: mysql_redis
-#          otp: 1:21.3.8.4-1
-#          preset: mysql_redis
-#          db: mysql
+      - mim/dialyzer:
+          name: dialyzer
+          otp: 1:22.0.4-1
 #          context: mongooseim-org
-#          requires:
-#            - otp_21_3_small_tests
+          requires:
+            - otp_22_small_tests
+      - mim/big_tests:
+          name: mysql_redis
+          otp: 1:21.3.8.4-1
+          preset: mysql_redis
+          db: mysql
+#          context: mongooseim-org
+          requires:
+            - otp_21_3_small_tests
       - mim/big_tests:
           name: internal_mnesia
           otp: 1:22.0.4-1
@@ -258,44 +258,44 @@ workflows:
 #          context: mongooseim-org
           requires:
             - otp_22_small_tests
-#      - mim/big_tests:
-#          name: ldap_mnesia
-#          otp: 1:22.0.4-1
-#          preset: ldap_mnesia
-#          db: mnesia
+      - mim/big_tests:
+          name: ldap_mnesia
+          otp: 1:22.0.4-1
+          preset: ldap_mnesia
+          db: mnesia
 #          context: mongooseim-org
-#          requires:
-#            - otp_22_small_tests
-#      - mim/big_tests:
-#          name: internal_mnesia
-#          otp: 1:22.0.4-1
-#          preset: internal_mnesia
-#          db: mnesia
-#          tls_dist: true
+          requires:
+            - otp_22_small_tests
+      - mim/big_tests:
+          name: internal_mnesia
+          otp: 1:22.0.4-1
+          preset: internal_mnesia
+          db: mnesia
+          tls_dist: true
 #          context: mongooseim-org
-#          requires:
-#            - otp_22_small_tests
-#      - mim/big_tests:
-#          name: elasticsearch_and_cassandra
-#          otp: 1:22.0.4-1
-#          preset: elasticsearch_and_cassandra_mnesia
-#          db: "elasticsearch cassandra"
+          requires:
+            - otp_22_small_tests
+      - mim/big_tests:
+          name: elasticsearch_and_cassandra
+          otp: 1:22.0.4-1
+          preset: elasticsearch_and_cassandra_mnesia
+          db: "elasticsearch cassandra"
 #          context: mongooseim-org
-#          requires:
-#            - otp_22_small_tests
-#      - mim/big_tests:
-#          name: pgsql_mnesia
-#          otp: 1:21.3.8.4-1
-#          preset: pgsql_mnesia
-#          db: pgsql
+          requires:
+            - otp_22_small_tests
+      - mim/big_tests:
+          name: pgsql_mnesia
+          otp: 1:21.3.8.4-1
+          preset: pgsql_mnesia
+          db: pgsql
 #          context: mongooseim-org
-#          requires:
-#            - otp_21_3_small_tests
-#      - mim/big_tests:
-#          name: riak_mnesia
-#          otp: 1:21.3.8.4-1
-#          preset: riak_mnesia
-#          db: riak
+          requires:
+            - otp_21_3_small_tests
+      - mim/big_tests:
+          name: riak_mnesia
+          otp: 1:21.3.8.4-1
+          preset: riak_mnesia
+          db: riak
 #          context: mongooseim-org
-#          requires:
-#            - otp_21_3_small_tests
+          requires:
+            - otp_21_3_small_tests
