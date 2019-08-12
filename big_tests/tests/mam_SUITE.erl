@@ -1157,6 +1157,7 @@ send_and_check_archive_elements(Config, Archived, Stanzaid) ->
         end,
         ok
         end,
+    1=2,
     %% Made fresh in init_per_testcase
     escalus:story(Config, [{alice, 1}, {bob, 1}], F).
 
