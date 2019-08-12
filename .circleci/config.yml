@@ -75,10 +75,10 @@ orbs:
               name: Make Certs
               command: |
                 make certs
-          - run:
-              name: Run Small Tests
-              command: |
-                KEEP_COVER_RUNNING=1 ./tools/travis-test.sh -p $PRESET -s true
+#          - run:
+#              name: Run Small Tests
+#              command: |
+#                KEEP_COVER_RUNNING=1 ./tools/travis-test.sh -p $PRESET -s true
           - run:
               name: Install Releases
               command: |
@@ -188,6 +188,8 @@ orbs:
               name: Run Big Tests
               command: |
                 KEEP_COVER_RUNNING=1 ./tools/travis-test.sh -p $PRESET -s false
+          - store_test_results:
+              path: big_tests/ct_report
           - run:
               name: Coverage
               when: on_success
@@ -213,6 +215,7 @@ orbs:
                   tools/circleci-prepare-log-dir.sh
                   if [ -n "${AWS_SECRET_ACCESS_KEY}" ]; then tools/circleci-upload-to-s3.sh; fi
 
+
 workflows:
   version: 2
   build_and_test:
@@ -220,23 +223,23 @@ workflows:
       - mim/package:
           name: centos7
           platform: centos7
-          context: mongooseim-org
+#          context: mongooseim-org
       - mim/package:
           name: debian_stretch
           platform: debian_stretch
-          context: mongooseim-org
+#          context: mongooseim-org
       - mim/build_and_small_tests:
           name: otp_21_3_small_tests
           otp: 1:21.3.8.4-1
-          context: mongooseim-org
+#          context: mongooseim-org
       - mim/build_and_small_tests:
           name: otp_22_small_tests
           otp: 1:22.0.4-1
-          context: mongooseim-org
+#          context: mongooseim-org
       - mim/dialyzer:
           name: dialyzer
           otp: 1:22.0.4-1
-          context: mongooseim-org
+#          context: mongooseim-org
           requires:
             - otp_22_small_tests
       - mim/big_tests:
@@ -244,15 +247,15 @@ workflows:
           otp: 1:21.3.8.4-1
           preset: mysql_redis
           db: mysql
-          context: mongooseim-org
+#          context: mongooseim-org
           requires:
             - otp_21_3_small_tests
       - mim/big_tests:
-          name: mssql_mnesia
+          name: internal_mnesia
           otp: 1:22.0.4-1
           preset: odbc_mssql_mnesia
           db: mssql
-          context: mongooseim-org
+#          context: mongooseim-org
           requires:
             - otp_22_small_tests
       - mim/big_tests:
@@ -260,7 +263,7 @@ workflows:
           otp: 1:22.0.4-1
           preset: ldap_mnesia
           db: mnesia
-          context: mongooseim-org
+#          context: mongooseim-org
           requires:
             - otp_22_small_tests
       - mim/big_tests:
@@ -269,7 +272,7 @@ workflows:
           preset: internal_mnesia
           db: mnesia
           tls_dist: true
-          context: mongooseim-org
+#          context: mongooseim-org
           requires:
             - otp_22_small_tests
       - mim/big_tests:
@@ -277,7 +280,7 @@ workflows:
           otp: 1:22.0.4-1
           preset: elasticsearch_and_cassandra_mnesia
           db: "elasticsearch cassandra"
-          context: mongooseim-org
+#          context: mongooseim-org
           requires:
             - otp_22_small_tests
       - mim/big_tests:
@@ -285,7 +288,7 @@ workflows:
           otp: 1:21.3.8.4-1
           preset: pgsql_mnesia
           db: pgsql
-          context: mongooseim-org
+#          context: mongooseim-org
           requires:
             - otp_21_3_small_tests
       - mim/big_tests:
@@ -293,6 +296,6 @@ workflows:
           otp: 1:21.3.8.4-1
           preset: riak_mnesia
           db: riak
-          context: mongooseim-org
+#          context: mongooseim-org
           requires:
             - otp_21_3_small_tests
